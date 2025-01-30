@@ -4,9 +4,18 @@
   border: none;
   outline: none;
   box-sizing: border-box;
+  color: $white;
 }
 html {
   background-color: $dark;
+  height: 100dvh;
+}
+body, #__nuxt{
+    height: 100%;
+}
+#__nuxt{
+    display: flex;
+    flex-direction: column;
 }
 .flex {
   display: flex;
@@ -14,6 +23,9 @@ html {
 .flex-col {
   display: flex;
   flex-direction: column;
+}
+.page-container{
+    padding: 0 var(--padding-page);
 }
 button.primary {
   @include text-normal;

@@ -12,6 +12,43 @@ $green: #a5bb0c;
 $green-light: #b1c909;
 $white: #ffffff;
 
+:root {
+  --padding-page: max(calc((100% - 1600px) / 2), 80px);
+}
+
+$desktop-large: 1920px;
+$desktop: 1440px;
+$tablet: 768px;
+$mobile: 360px;
+
+.color-dark {
+  color: $dark;
+}
+.color-dark-middle {
+  color: $dark-middle;
+}
+.color-dark-light {
+  color: $dark-light;
+}
+.color-gray {
+  color: $gray;
+}
+.color-green-dark {
+  color: $green-dark;
+}
+.color-green-middle {
+  color: $green-middle;
+}
+.color-green {
+  color: $green;
+}
+.color-green-light {
+  color: $green-light;
+}
+.color-white {
+  color: $white;
+}
+
 @mixin h1 {
   font-family: Montserrat;
   font-size: 104px;
@@ -86,4 +123,8 @@ $white: #ffffff;
 }
 .text-bold {
   font-weight: 700;
+}
+
+@media (max-width: 1440px) {
+
 }
