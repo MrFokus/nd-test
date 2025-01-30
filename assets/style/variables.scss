@@ -1,0 +1,53 @@
+@font-face {
+    font-family: Montserrat;
+    src: url("../fonts/Montserrat-VariableFont_wght.ttf") format("truetype");
+}
+$dark: #0a1f38;
+$dark-middle: #1b2f46;
+$dark-light: #2f4056;
+$gray: #9da5af;
+$green-dark: #819400;
+$green-middle: #97ab0d;
+$green: #a5bb0c;
+$green-light: #b1c909;
+$white: #ffffff;
+
+.h1 {
+  font-family: Montserrat;
+  font-size: 104px;
+  font-weight: 900;
+  line-height: 100%;
+}
+.h2 {
+  font-family: Montserrat;
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 150%;
+}
+.h3 {
+  font-family: Montserrat;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 150%;
+}
+.h4 {
+  font-family: Montserrat;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 130%;
+}
+.text-normal {
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 160%;
+}
+.text-small {
+  font-family: Montserrat;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 155%;
+}
+.text-bold{
+    font-weight: 700;
+}
