@@ -38,4 +38,13 @@ header {
 main{
     flex: 1 0 0;
 }
+@media (max-width: 1200px) {
+  header{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    .logo{
+      height: 36px;
+    }
+  }
+}
 </style>

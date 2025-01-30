@@ -119,12 +119,37 @@ $mobile: 360px;
   font-family: Montserrat;
   font-size: 18px;
   font-weight: 400;
-  line-height: 155%;
+  line-height: 150%;
 }
 .text-bold {
   font-weight: 700;
 }
 
-@media (max-width: 1440px) {
-
+@media (max-width: 768px) {
+  :root{
+    --padding-page:40px;
+  }
+}
+@media (max-width: 580px) {
+  :root{
+    --padding-page:20px;
+  }
+  .h1 {
+    font-size: 60px;
+  }
+  .h2 {
+    font-size: 32px;
+  }
+  .h3 {
+    font-size: 24px;
+  }
+  .h4 {
+    font-size: 20px;
+  }
+  .text-normal {
+    font-size: 16px;
+  }
+  .text-small {
+    font-size: 14px;
+  }
 }
