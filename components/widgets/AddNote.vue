@@ -69,6 +69,7 @@ import { removeQueryParamUrl } from "~/helpers/route";
 import { addNote } from "~/api/note";
 import { useNotesStore } from "~/store/notes";
 import type { AddNote } from "~/types/forms";
+import { isArrayToString } from "~/helpers/transform";
 
 const OPEN_QUERY = "add-note";
 const inputMaxValueLength = 64;
@@ -137,7 +138,7 @@ async function addNoteRequest() {
     removeQueryParamUrl(OPEN_QUERY);
   }
   if (res.error.value) {
-    setErrorMessage(res.error.value.data.message[0]);
+    setErrorMessage(isArrayToString(res.error.value?.data.message));
   }
 }
 </script>

@@ -95,6 +95,7 @@ import OutViewIcon from "~/assets/img/out-view.svg?component";
 import InputIcon from "../UI/InputIcon.vue";
 import { register } from "~/api/auth";
 import type { RegisterForm } from "~/types/forms";
+import { isArrayToString } from "~/helpers/transform";
 
 const OPEN_QUERY = "register";
 const loginMaxValueLength = 100;
@@ -205,7 +206,7 @@ async function registerUser() {
     navigateTo("?sign-in");
   }
   if (res.error.value) {
-    setErrorMessage(res.error.value?.data.message[0]);
+    setErrorMessage(isArrayToString(res.error.value?.data.message));
   }
 }
 </script>

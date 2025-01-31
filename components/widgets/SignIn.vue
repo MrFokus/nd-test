@@ -72,6 +72,7 @@ import InViewIcon from "~/assets/img/in-view.svg?component";
 import OutViewIcon from "~/assets/img/out-view.svg?component";
 import InputIcon from "../UI/InputIcon.vue";
 import { auth } from "~/api/auth";
+import { isArrayToString } from "~/helpers/transform";
 
 const OPEN_QUERY = "sign-in";
 const loginMaxValueLength = 100;
@@ -153,7 +154,7 @@ async function signIn() {
     navigateTo("/dashboard");
   }
   if (res.error.value) {
-    setErrorMessage(res.error.value?.data.message[0]);
+    setErrorMessage(isArrayToString(res.error.value?.data.message));
   }
 }
 </script>
