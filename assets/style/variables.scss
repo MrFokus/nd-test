@@ -11,6 +11,7 @@ $green-middle: #97ab0d;
 $green: #a5bb0c;
 $green-light: #b1c909;
 $white: #ffffff;
+$red:#FF7461;
 
 :root {
   --padding-page: max(calc((100% - 1600px) / 2), 80px);
@@ -47,6 +48,9 @@ $mobile: 360px;
 }
 .color-white {
   color: $white;
+}
+.color-red {
+  color: $red;
 }
 
 @mixin h1 {

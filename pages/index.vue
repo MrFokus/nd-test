@@ -4,11 +4,17 @@
       <h1 class="h1">Мои заметки</h1>
       <p class="h3 color-gray">Не забывай о важном, храни его в облаке.</p>
     </div>
-    <div class="preview" />
+    <div class="preview"/>
   </section>
+  <SignIn/>
+  <Register/>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import Register from '~/components/widgets/Register.vue';
+import SignIn from '~/components/widgets/SignIn.vue';
+
+</script>
 
 <style scoped lang="scss">
 .welcome {

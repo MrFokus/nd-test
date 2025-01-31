@@ -27,8 +27,22 @@ body, #__nuxt{
 .page-container{
     padding: 0 var(--padding-page);
 }
-button.primary {
+.clear{
+  background: none;
+  border: none;
+  outline: none;
+  text-decoration: none;
+  list-style: none;
+  display: flex;
+  width: fit-content;
+  height: fit-content;
+}
+.pointer{
+  cursor: pointer;
+}
+button.primary, a.btn-primary {
   @include text-normal;
+  text-decoration: none;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -50,7 +64,16 @@ button.primary {
     background-color: $gray;
     cursor: no-drop;
   }
+
+  &.circle{
+    aspect-ratio: 1;
+    width:56px;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+  }
 }
+
 
 input.primary,
 textarea.primary {
@@ -71,9 +94,9 @@ a.primary {
   @include text-small;
 
   &:hover {
-    color: $green-light;
+    color: $white;
   }
-  color: $white;
+  color: $green-light;
   font-weight: 700;
   text-decoration: none;
 }

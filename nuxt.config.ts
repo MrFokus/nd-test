@@ -14,7 +14,25 @@ export default defineNuxtConfig({
       }
     }
   },
+  runtimeConfig: {
+    public: {
+      apiUrl: process.env.API_URL ?? "",
+    },
+  },
   svgo: {
     defaultImport: "url",
+    svgoConfig: {
+      multipass: true,
+      plugins: [
+        {
+          name: 'preset-default',
+          params: {
+            overrides: {
+              cleanupAttrs:false,
+            },
+          },
+        },
+      ],
+    }
   },
 })
