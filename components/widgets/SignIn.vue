@@ -76,9 +76,9 @@ import { auth } from "~/api/auth";
 const OPEN_QUERY = "sign-in";
 const loginMaxValueLength = 100;
 const passwordMaxValueLength = 12;
-const isViewPassword = ref(false);
-const modalError = ref("");
-const formData = ref({
+const isViewPassword = ref<boolean>(false);
+const modalError = ref<string>("");
+const formData = ref<SignInIcon>({
   email: {
     value: "",
     error: "",
@@ -111,7 +111,7 @@ function setErrorMessage(value: string, time: number = 3000) {
   }, time);
 }
 function changeInputPassword(event: InputEvent) {
-  formData.value.password.value = event.target?.value;
+  formData.value.password.value = (event.target as HTMLInputElement)?.value;
   formData.value.password.error = validPassword(formData.value.password.value);
 }
 function changeInputEmail() {

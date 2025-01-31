@@ -17,9 +17,9 @@
             <input
               v-model="formData.title.value"
               @input="
-                ($event) =>
+                ($event:InputEvent) =>
                   (formData.title.error = validText(
-                    $event.target?.value,
+                    ($event.target as HTMLInputElement)?.value,
                     inputMaxValueLength
                   ))
               "
@@ -37,9 +37,9 @@
           >
             <textarea
               @input="
-                ($event) =>
+                ($event:InputEvent) =>
                   (formData.content.error = validText(
-                    $event.target.value,
+                    ($event.target as HTMLInputElement).value,
                     textareaMaxValueLength
                   ))
               "
@@ -68,12 +68,13 @@ import SignInIcon from "~/assets/img/sign-in.svg?component";
 import { removeQueryParamUrl } from "~/helpers/route";
 import { addNote } from "~/api/note";
 import { useNotesStore } from "~/store/notes";
+import type { AddNote } from "~/types/forms";
 
 const OPEN_QUERY = "add-note";
 const inputMaxValueLength = 64;
 const textareaMaxValueLength = 255;
-const modalError = ref("");
-const formData = ref({
+const modalError = ref<string>("");
+const formData = ref<AddNote>({
   title: {
     value: "",
     error: "",

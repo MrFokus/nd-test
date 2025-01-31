@@ -10,6 +10,10 @@
 import ListNotes from "~/components/widgets/ListNotes.vue";
 import AddNote from "~/components/widgets/AddNote.vue";
 import CloseIcon from "~/assets/img/close.svg?component"
+
+useSeoMeta({
+    title:'Ваши Заметки'
+})
 </script>
 
 <style scoped lang="scss">

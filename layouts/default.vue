@@ -17,7 +17,8 @@ import LogoIcon from "@/assets/img/logo.svg?component";
 import SignInIcon from "@/assets/img/sign-in.svg?component";
 import { getUser } from "~/api/auth";
 import UserMenu from "~/components/modules/UserMenu.vue";
-const user = ref()
+import type { User } from "~/types/user";
+const user = ref<User | null>()
 const route = useRoute()
 watch(()=>route.path,()=>{
   getUserRequest()

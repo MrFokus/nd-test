@@ -94,14 +94,15 @@ import InViewIcon from "~/assets/img/in-view.svg?component";
 import OutViewIcon from "~/assets/img/out-view.svg?component";
 import InputIcon from "../UI/InputIcon.vue";
 import { register } from "~/api/auth";
+import type { RegisterForm } from "~/types/forms";
 
 const OPEN_QUERY = "register";
 const loginMaxValueLength = 100;
 const passwordMaxValueLength = 12;
-const isViewPassword = ref(false);
-const isViewPasswordRepeat = ref(false);
-const modalError = ref("");
-const formData = ref({
+const isViewPassword = ref<boolean>(false);
+const isViewPasswordRepeat = ref<boolean>(false);
+const modalError = ref<string>("");
+const formData = ref<RegisterForm>({
   email: {
     value: "",
     error: "",
@@ -148,13 +149,11 @@ watch(
 );
 
 function changeInputPassword(event: InputEvent) {
-  console.log("sdgsdgsdgsgs");
-
-  formData.value.password.value = event.target?.value;
+  formData.value.password.value =(event.target as HTMLInputElement)?.value;
   formData.value.password.error = validPassword(formData.value.password.value);
 }
 function changeInputPasswordRepeat(event: InputEvent) {
-  formData.value.passwordRepeat.value = event.target?.value;
+  formData.value.passwordRepeat.value =(event.target as HTMLInputElement)?.value;
   formData.value.passwordRepeat.error = validPasswordRepeat(
     formData.value.passwordRepeat.value
   );

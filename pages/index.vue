@@ -13,7 +13,9 @@
 <script setup lang="ts">
 import Register from '~/components/widgets/Register.vue';
 import SignIn from '~/components/widgets/SignIn.vue';
-
+useSeoMeta({
+    title:"Мои заметки - Главная"
+})
 </script>
 
 <style scoped lang="scss">

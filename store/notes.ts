@@ -1,7 +1,8 @@
 import { getNotes } from "~/api/note";
+import type { Note } from "~/types/notes";
 
 export const useNotesStore = defineStore("note-store", {
-  state: () => ({
+  state: ():{notes:Note[]} => ({
     notes: [],
   }),
   actions: {
