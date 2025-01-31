@@ -1,12 +1,13 @@
 <template>
-    <div class="task">
+    <div class="note">
         <header>
-            <p class="h4">Заголовок</p>
+            <p class="h4">{{note.title}}</p>
         </header>
-        <section class="task-content text-normal">
-            Не следует, однако, забывать, что базовый вектор развития предопределяет высокую востребованность позиций, занимаемых участниками в отношении поставленных задач. Вот вам яркий пример современных тенденций — повышение уровня гражданского сознания требует анализа переосмысления внешнеэкономических политик.        </section>
+        <section :title="note.content" class="task-content text-normal">
+            {{ note.content }}
+        </section>
         <footer>
-            <button class="clear primary text-normal delete-task">
+            <button @click="emit('delete')" class="clear primary delete-task">
                 <CloseIcon/>
                 Удалить
             </button>
@@ -16,11 +17,20 @@
 
 <script setup lang="ts">
 import CloseIcon from "~/assets/img/close.svg?component"
-
+const props = defineProps<{
+    note:{
+        id:number,
+        title:string,
+        content:string,
+    }
+}>()
+const emit = defineEmits<{
+    'delete':[]
+}>()
 </script>
 
 <style scoped lang="scss">
-.task{
+.note{
     background-color: $green-light;
     border-radius: 12px;
     position: relative;
@@ -52,11 +62,12 @@ footer{
 }
 .task-content{
     text-overflow: ellipsis;
+    word-break: break-all;
     overflow: hidden;
     -webkit-line-clamp: 9;
-    padding: 28px;
+    height: fit-content;
     max-width: 100%;
-    max-height: 288px;
+    margin: 28px;
     -webkit-box-orient: vertical;
     box-orient: vertical;
     display: -webkit-box;

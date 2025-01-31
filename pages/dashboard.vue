@@ -1,41 +1,19 @@
 <template>
-    <ul class="tasks clear page-container">
-        <li>
-            <Task/>
-        </li>
-        <li>
-            <Task/>
-        </li>
-        <li>
-            <Task/>
-        </li>
-        <li>
-            <Task/>
-        </li>
-        <li>
-            <Task/>
-        </li>
-        <li>
-            <Task/>
-        </li>
-    </ul>
-    <button class="circle primary add-task">
+    <ListNotes/>
+    <NuxtLink to="?add-note" class="circle btn-primary add-note">
         <CloseIcon class="add-icon"/>
-    </button>
+    </NuxtLink>
+    <AddNote/>
 </template>
 
 <script setup lang="ts">
-import Task from "~/components/UI/Task.vue";
+import ListNotes from "~/components/widgets/ListNotes.vue";
+import AddNote from "~/components/widgets/AddNote.vue";
 import CloseIcon from "~/assets/img/close.svg?component"
 </script>
 
 <style scoped lang="scss">
-.tasks{
-    display: grid;
-    grid-template-columns: repeat(auto-fill,minmax(460px, 1fr));
-    gap: 40px;
-}
-.add-task{
+.add-note{
     position: fixed;
     bottom: 40px;
     right: 12px;

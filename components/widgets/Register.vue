@@ -1,20 +1,21 @@
 <template>
   <ModalBase :open-query="OPEN_QUERY">
     <ModalPrimary
+      class="modal-primary"
       name-modal="Регистрация"
       :error="modalError"
       :open-query="OPEN_QUERY"
     >
-      <form @submit.prevent="register" class="flex-col">
+      <form @submit.prevent="registerUser" class="flex-col">
         <section class="fields flex-col">
           <FormInput
             :invalid-msg="formData.email.error"
             :current-symbols="formData.email.value.length"
-            :max-symbols="inputMaxValueLength"
+            :max-symbols="loginMaxValueLength"
             lable-name="Email"
           >
             <input
-              v-model="formData.email.value"
+              v-model.trim="formData.email.value"
               @input="changeInputEmail"
               type="text"
               class="primary"
@@ -24,7 +25,7 @@
           <FormInput
             :invalid-msg="formData.password.error"
             :current-symbols="formData.password.value.length"
-            :max-symbols="inputMaxValueLength"
+            :max-symbols="passwordMaxValueLength"
             class="password-field"
             lable-name="Пароль"
           >
@@ -48,7 +49,7 @@
           <FormInput
             :invalid-msg="formData.passwordRepeat.error"
             :current-symbols="formData.passwordRepeat.value.length"
-            :max-symbols="inputMaxValueLength"
+            :max-symbols="passwordMaxValueLength"
             class="password-field"
             lable-name="Пароль ещё раз"
           >
@@ -73,7 +74,7 @@
         <footer class="flex">
           <p class="text-small no-account">
             У вас есть аккаунт?
-            <NuxtLink class="primary" to="?register"> Войдите </NuxtLink>
+            <NuxtLink class="primary text-small text-bold" to="?sign-in"> Войдите </NuxtLink>
           </p>
           <button :disabled="isDisabledBtn" class="primary">
             <SignInIcon />Войти
@@ -92,9 +93,11 @@ import SignInIcon from "~/assets/img/sign-in.svg?component";
 import InViewIcon from "~/assets/img/in-view.svg?component";
 import OutViewIcon from "~/assets/img/out-view.svg?component";
 import InputIcon from "../UI/InputIcon.vue";
+import { register } from "~/api/auth";
 
 const OPEN_QUERY = "register";
-const inputMaxValueLength = 100;
+const loginMaxValueLength = 100;
+const passwordMaxValueLength = 12;
 const isViewPassword = ref(false);
 const isViewPasswordRepeat = ref(false);
 const modalError = ref("");
@@ -112,7 +115,41 @@ const formData = ref({
     error: "",
   },
 });
+
+const isDisabledBtn = computed<boolean>(() =>
+  Boolean(
+    formData.value.password.error ||
+      formData.value.email.error ||
+      !formData.value.password.value ||
+      !formData.value.email.value ||
+      !formData.value.passwordRepeat.value ||
+      formData.value.passwordRepeat.error
+  )
+);
+
+watch(
+  () => useRoute().query,
+  () => {
+    formData.value = {
+      email: {
+        value: "",
+        error: "",
+      },
+      password: {
+        value: "",
+        error: "",
+      },
+      passwordRepeat: {
+        value: "",
+        error: "",
+      },
+    };
+  }
+);
+
 function changeInputPassword(event: InputEvent) {
+  console.log("sdgsdgsdgsgs");
+
   formData.value.password.value = event.target?.value;
   formData.value.password.error = validPassword(formData.value.password.value);
 }
@@ -129,16 +166,16 @@ function validEmail(value: string) {
   if (!value.includes("@")) {
     return "Электронная почта должна содержать @";
   }
-  if (value.length > inputMaxValueLength) {
+  if (value.length > loginMaxValueLength) {
     return "Слишком большая длина";
   }
   return "";
 }
 
-function setErrorMessage(value:string, time:number = 3000){
-  modalError.value = value
+function setErrorMessage(value: string, time: number = 3000) {
+  modalError.value = value;
   setTimeout(() => {
-    modalError.value = ''
+    modalError.value = "";
   }, time);
 }
 
@@ -146,7 +183,7 @@ function validPassword(value: string) {
   if (value.length < 8) {
     return "Минимальная длина состовляет 8 символов";
   }
-  if (value.length > inputMaxValueLength) {
+  if (value.length > passwordMaxValueLength) {
     return "Слишком большая длина";
   }
   return "";
@@ -158,53 +195,40 @@ function validPasswordRepeat(value: string) {
   }
   return "";
 }
-const isDisabledBtn = computed<boolean>(() =>
-  Boolean(
-    formData.value.password.error ||
-      formData.value.email.error ||
-      !formData.value.password.value ||
-      !formData.value.email.value ||
-      !formData.value.passwordRepeat.value ||
-      formData.value.passwordRepeat.error
-  )
-);
 
-async function register() {
-  const res = await useFetch(`${useRuntimeConfig().public.apiUrl}api/reg`, {
-    method: "POST",
-    body: {
-      email: formData.value.email.value,
-      password: formData.value.password.value,
-      confirm_password: formData.value.passwordRepeat.value,
-    },
-  });
+async function registerUser() {
+  const res = await register(
+    formData.value.email.value,
+    formData.value.password.value,
+    formData.value.passwordRepeat.value
+  );
   if (res.data.value) {
-    navigateTo('?sign-in')
+    navigateTo("?sign-in");
   }
   if (res.error.value) {
-    setErrorMessage(res.error.value?.data.message)
+    setErrorMessage(res.error.value?.data.message[0]);
   }
 }
 </script>
 
 <style scoped lang="scss">
-form {
-  gap: 40px;
-  width: 620px;
-}
-.fields {
-  gap: 24px;
-}
 .no-account {
   display: flex;
   gap: 4px;
 }
-footer {
-  align-items: center;
-  justify-content: space-between;
-  gap: 40px;
-}
+
 .password-field :deep(label) {
   width: 100%;
+}
+@media (max-width: 450px) {
+  footer {
+    flex-direction: column-reverse;
+    button.primary {
+      width: 100%;
+    }
+    .no-account{
+      align-items: center;
+    }
+  }
 }
 </style>

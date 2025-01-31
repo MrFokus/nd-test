@@ -15,20 +15,15 @@
 <script setup lang="ts">
 import LogoIcon from "@/assets/img/logo.svg?component";
 import SignInIcon from "@/assets/img/sign-in.svg?component";
+import { getUser } from "~/api/auth";
 import UserMenu from "~/components/modules/UserMenu.vue";
 const user = ref()
 const route = useRoute()
-watch(route,()=>{
-  getUser()
-}) 
-const token = useCookie('user_token_nd')
-async function getUser() {
-  const res = await useFetch(`${useRuntimeConfig().public.apiUrl}api/auth`, {
-    method:"get",
-    headers:{
-      "Authorization":`Bearer ${token.value??''}`
-    }
-  })
+watch(()=>route.path,()=>{
+  getUserRequest()
+},{immediate:true}) 
+async function getUserRequest() {
+  const res = await getUser()
   if(res.data.value){
     user.value = res.data.value
   }
@@ -36,7 +31,6 @@ async function getUser() {
     user.value = null
   }
 }
-getUser()
 </script>
 
 <style scoped lang="scss">

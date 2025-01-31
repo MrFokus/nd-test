@@ -64,16 +64,14 @@ button.primary, a.btn-primary {
     background-color: $gray;
     cursor: no-drop;
   }
-  
 }
-button.circle{
+a.circle, button.circle, .circle{
   aspect-ratio: 1;
   width:56px;
   padding: 0;
   align-items: center;
   justify-content: center;
 }
-
 
 input.primary,
 textarea.primary {
@@ -88,6 +86,7 @@ textarea.primary {
   &:focus {
     outline: 2px solid $green-light;
   }
+
 }
 
 a.primary, button.link {
@@ -101,6 +100,37 @@ a.primary, button.link {
   text-decoration: none;
 }
 
+
 button.primary, textarea.primary, a.primary{
     transition: color 0.2s ;
+}
+.modal-primary{
+  footer {
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  form {
+    gap: 40px;
+    width: 620px;
+    max-width: 100%;
+    max-height: 100%;
+  }
+  .fields {
+    gap: 24px;
+  }
+  @media (max-width: 450px) {
+    min-height: 100%;
+    justify-content: center;
+    form{
+      gap: 24px;
+    }
+    .fields{
+      gap: 16px;
+    }
+    footer{
+      gap: 12px;
+    }
+  }
 }

@@ -36,7 +36,7 @@ const props = defineProps<{
 <style scoped lang="scss">
 .modal-container {
   display: flex;
-  padding: 80px;
+  padding: min(80px,10vw);
   flex-direction: column;
   position: absolute;
   margin: auto;
@@ -45,6 +45,7 @@ const props = defineProps<{
   height: fit-content;
   border-radius: 40px;
   background: $dark-middle;
+  max-width: 100%;
 }
 .close {
   position: absolute;

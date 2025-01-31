@@ -37,5 +37,10 @@ const popupList = [{
     gap: 12px;
     position: relative;
 }
+@media (max-width:767px) {
+    .user-email{
+        display: none;
+    }
+}
 
 </style>
