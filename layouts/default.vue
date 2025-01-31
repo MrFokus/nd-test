@@ -1,7 +1,8 @@
 <template>
   <header class="page-container">
     <LogoIcon class="logo" />
-    <NuxtLink to="?sign-in" class="btn-primary">
+    <UserMenu :user="user" v-if="user"></UserMenu>
+    <NuxtLink v-else to="?sign-in" class="btn-primary">
       <SignInIcon/>
       Вход
     </NuxtLink>
@@ -14,6 +15,28 @@
 <script setup lang="ts">
 import LogoIcon from "@/assets/img/logo.svg?component";
 import SignInIcon from "@/assets/img/sign-in.svg?component";
+import UserMenu from "~/components/modules/UserMenu.vue";
+const user = ref()
+const route = useRoute()
+watch(route,()=>{
+  getUser()
+}) 
+const token = useCookie('user_token_nd')
+async function getUser() {
+  const res = await useFetch(`${useRuntimeConfig().public.apiUrl}api/auth`, {
+    method:"get",
+    headers:{
+      "Authorization":`Bearer ${token.value??''}`
+    }
+  })
+  if(res.data.value){
+    user.value = res.data.value
+  }
+  if(res.error.value?.statusCode == 401){
+    user.value = null
+  }
+}
+getUser()
 </script>
 
 <style scoped lang="scss">
@@ -24,6 +47,7 @@ header {
   justify-content: space-between;
   align-items: center;
   position: sticky;
+  z-index: 10;
   top: 0;
   right: 0;
   left: 0;

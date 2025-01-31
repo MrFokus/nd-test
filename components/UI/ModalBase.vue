@@ -20,6 +20,7 @@ const props = defineProps<{
 <style scoped lang="scss">
 .modal-base {
   position: fixed;
+  z-index: 20;
   inset: 0;
 }
 .outer-space {

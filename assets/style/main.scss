@@ -64,14 +64,14 @@ button.primary, a.btn-primary {
     background-color: $gray;
     cursor: no-drop;
   }
-
-  &.circle{
-    aspect-ratio: 1;
-    width:56px;
-    padding: 0;
-    align-items: center;
-    justify-content: center;
-  }
+  
+}
+button.circle{
+  aspect-ratio: 1;
+  width:56px;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
 }
 
 
@@ -90,7 +90,7 @@ textarea.primary {
   }
 }
 
-a.primary {
+a.primary, button.link {
   @include text-small;
 
   &:hover {

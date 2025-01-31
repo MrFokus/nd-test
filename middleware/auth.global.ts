@@ -3,5 +3,8 @@ export default defineNuxtRouteMiddleware((from,to)=>{
     if(!userToken.value && from.path!=='/'){
         return navigateTo('/?sign-in')
     }
+    else if(userToken.value && from.path=='/'){
+        return navigateTo('/dashboard')
+    }
     return true
 })
