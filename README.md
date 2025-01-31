@@ -1,75 +1,13 @@
-# Nuxt Minimal Starter
+# Тестовое задание Глубоков Герман
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## Проект развёрнут в GitHub Pages - (https://mrfokus.github.io/nd-test/)
 
-## Setup
+## Читое затраченное время ~ 12 часов 
+## Про использование Nuxt ничего не было сказно в задании, да и это не UI библиотека. Надеюсь ничего страшного 😅
+### Из стороннего использовал:
++ SCSS
++ Pinia
++ VueUse (библиотека утитлит)
++ SVGO (Чтобы удобно было использовать svg, как компонент, а не как громадный xml)
 
-Make sure to install dependencies:
-
-```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+### Если будут какие-нибудь вопросы, то с радостью отвечу 🙂
