@@ -5,6 +5,9 @@ export default defineNuxtConfig({
   ssr:false,
   modules: ['nuxt-svgo','@vueuse/nuxt','@pinia/nuxt'],
   css: ['~/assets/style/main.scss'],
+  app: {
+    baseURL: process.env.NUXT_APP_BASE_URL??'/',
+  },
   vite: {
     css: {
       preprocessorOptions: {
